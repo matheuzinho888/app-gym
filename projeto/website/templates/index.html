@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'title' %}pagina de catalogo {% endblock %}
+
+{% block 'body' %}
+<h1></h1>
+ <style>
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .image-container img {
+      display: block;
+      width: 400px;
+      height: auto;
+    }
+
+    .image-container button {
+      position: absolute;
+      padding: 55px 40px;
+      background-color: rgb(255, 255, 255);
+      color: #000000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .image-container button:hover {
+      background-color: rgba(0, 123, 255, 1);
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container" style="display: flex;justify-content: space-around;">
+    <img src="./static/img/caraacad.webp" alt="Imagem Exemplo" style="width: 70%;height: 700px;">
+
+    <button class="top-left" style="left: 54%;right: 32%;bottom: 57%;top: 18%;" onclick="alert('Clicou Top Left!')"><i class="bi bi-chevron-double-up"></i><br>cargas</button>
+    <button class="top-right" style="left: 69%;right: 17%;bottom: 57%;top: 18%;" onclick="alert('Clicou Top Right!')"><i class="bi bi-calendar-date"></i><br>cronogramas</button>
+    <button class="bottom-left" style="left: 69%;right: 17%;bottom: 29%;top: 47%;" onclick="alert('Clicou Bottom Left!')"><i class="bi bi-fork-knife"></i><br>dietas</button>
+    <button class="bottom-right" style="left: 54%;right: 32%;bottom: 29%;top: 47%;"  onclick="alert('Clicou Bottom Right!')"><i class="bi bi-sort-numeric-up"></i><br>divisoes de treino</button>
+  </div>
+<br>
+<div style="display: flex;justify-content: space-around;">
+<img src="./static/img/gama-4.jpg" alt="imagem-academia" style="width: 70%;height: 700px;">
+</div>
+
+{% endblock %}

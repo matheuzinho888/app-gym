@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'title' %}pagina de catalogo{% endblock %}
+
+{% block 'body' %}
+<div class="img-dieta1">
+  <img style="width: 48%;" src="/static/img/alimentos.jpg" alt="alimentando">
+</div>
+
+<h1 class="h1-dieta">Calcule sua dieta com a Calculadora TMB</h1>
+
+<div class="descricao-dieta2">
+  <p class="descricao-dieta">
+    <b>
+      A Calculadora de TMB (Taxa Metabólica Basal) ajuda você a entender quantas calorias seu corpo precisa diariamente. 
+      A partir de informações como peso, altura, idade, gênero e nível de atividade física, ela estima o gasto energético 
+      do seu organismo em repouso e ajusta conforme sua rotina.
+    </b>
+  </p>
+</div>
+
+<div class="alerta-dieta">
+  <p>⚠️ Lembre-se: os resultados são apenas uma estimativa. Consultar um nutricionista é sempre a melhor opção!</p>
+</div>
+
+<h2 class="h2-dieta">Calcule sua Taxa de Metabolismo Basal (TMB)</h2>
+
+<div class="blocos-dieta" id="blocos-idieta">
+  <label for="idade">Idade (anos):</label>
+  <input style="width: 40%; height: 50px;" type="number" id="idade" required>
+
+  <label for="altura">Altura (cm):</label>
+  <input style="width: 40%; height: 50px;" type="number" id="altura" required>
+
+  <label for="peso">Peso (kg):</label>
+  <input style="width: 40%; height: 50px;" type="number" id="peso" required>
+
+  <label for="genero">Gênero:</label>
+  <select style="width: 40%; height: 50px;" id="genero" required>
+    <option value="masculino">Masculino</option>
+    <option value="feminino">Feminino</option>
+  </select>
+
+  <label for="atividade">Nível de atividade diária:</label>
+  <select style="width: 40%; height: 50px;" id="atividade" required>
+        <option value="1.375">levemente ativo(exercicios leves ou atividades leves diariamente)</option>
+        <option value="1.55">moderadamente ativo(exercicios moderados ou atividades moderadas diariamente)</option>
+        <option value="1.725">muito ativo(exercicios intensos ou atividades intensas diariamente)</option>
+        <option value="1.9">extremamente ativo(exercicios muito intensos ou trabalho fisico pesado diariamente)</option>
+  </select>
+
+
+<h3>Clique aqui para saber o resultado</h3>
+<button type="button" onclick="calcularTMB()">Calcular</button>
+</div>
+
+<div id="resultado" style="margin-top: 15px; font-size: 18px; font-weight: bold;"></div>
+
+<script>
+function calcularTMB() {
+    const idade = parseInt(document.getElementById('idade').value);
+    const altura = parseFloat(document.getElementById('altura').value);
+    const peso = parseFloat(document.getElementById('peso').value);
+    const genero = document.getElementById('genero').value;
+    const atividade = parseFloat(document.getElementById('atividade').value);
+
+    let tmb;
+    if (genero === 'masculino') {
+        tmb = 88.36 + (13.4 * peso) + (4.8 * altura) - (5.7 * idade);
+    } else {
+        tmb = 447.6 + (9.2 * peso) + (3.1 * altura) - (4.3 * idade);
+    }
+
+    const gasto_total = tmb * atividade;
+
+    const manter = gasto_total;
+    const perder = gasto_total * 0.8;  
+    const ganhar = gasto_total * 1.2;  
+
+    document.getElementById('resultado').innerHTML = `
+    <div style="display: flex;align-items: center;flex-direction: column;">
+        <strong>TMB (Taxa de metabolismo basal):</strong> ${tmb.toFixed(2)} kcal/dia<br>
+        <strong>Seu gasto total diário:</strong> ${gasto_total.toFixed(2)} kcal/dia<br><br>
+    </div>
+
+        <h3 style="display: flex;justify-content: center;">Planos de calorias</h3>
+         <div class="card-group">
+  <div class="card" style="display: flex;align-items: center;">
+   <img style="width: 60%; height: 100%;" src="/static/img/perder.png" alt="gif-biceps"> </img>
+    <div class="card-body">
+      <h5 class="card-title"><b>perder peso</b></h5>
+      <br>
+      <p class="card-text">${perder.toFixed(2)} kcal/dia</p>
+    </div>
+  </div>
+  <div class="card" style="display: flex;align-items: center;">
+   <img style="width: 59%; height: 100%;" src="/static/img/musculos.avif" alt="gif-biceps"> </img>
+    <div class="card-body">
+      <br>
+      <h5 class="card-title"><b>manter o peso</b></h5>
+      <br>
+      <p class="card-text"> ${manter.toFixed(2)} kcal/dia</p>
+    </div>
+  </div>
+  <div class="card" style="display: flex;align-items: center;">
+   <img style="width: 55%; height: 100%;" src="/static/img/braco.webp" alt="gif-biceps"> </img>
+    <div class="card-body">
+      <h5 class="card-title"><b>ganhar massa</b></h5>
+      <br>
+      <p class="card-text"> ${ganhar.toFixed(2)} kcal/dia</p>
+    </div>
+  </div>
+</div>
+    `;
+}
+</script>
+</script>
+{% endblock %}

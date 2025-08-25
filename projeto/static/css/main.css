@@ -1,0 +1,36 @@
+.alerta-dieta{
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+.descricao-dieta{
+    font-size: larger;
+    text-align: center;
+    display: flex;
+    width: 50%;
+}
+.descricao-dieta2{
+    display: flex;
+    justify-content: space-around;
+}
+.h1-dieta{
+    display: flex;
+    justify-content: center;
+}
+.img-dieta1{
+    display: flex;
+    justify-content: center;
+}
+.blocos-dieta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.h2-dieta{
+    display: flex;
+    justify-content: center;
+}
+.tresimgs{
+    display: flex;
+
+}
